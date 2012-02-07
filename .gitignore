@@ -1,0 +1,9 @@
+.settings
+.cproject
+.project
+.git
+.DS_Store
+Debug
+*.swp
+*.tmp
+*~
