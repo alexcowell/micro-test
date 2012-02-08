@@ -22,7 +22,7 @@ extern int mu_tests_run;
 	}                                                                          \
 } while (0)
 
-#define assertEqualsFloat(expected, actual, epsilon) do {                      \
+#define assertEqualsDouble(expected, actual, epsilon) do {                     \
 	if (!(fabs((expected) - (actual)) < epsilon)) {                            \
 		MU_FL_EQUAL_FAIL((expected), (actual));                                \
 		return 1;                                                              \
