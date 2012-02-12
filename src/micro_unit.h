@@ -17,23 +17,23 @@ extern int mu_tests_run;
 
 #define assertEqualsInt(expected, actual) do {                                 \
     if ((expected) != (actual)) {                                              \
-		MU_NUM_EQUAL_FAIL((expected), (actual));                               \
-		return 1;                                                              \
-	}                                                                          \
+        MU_NUM_EQUAL_FAIL((expected), (actual));                               \
+        return 1;                                                              \
+    }                                                                          \
 } while (0)
 
 #define assertEqualsDouble(expected, actual, epsilon) do {                     \
-	if (!(fabs((expected) - (actual)) < epsilon)) {                            \
-		MU_FL_EQUAL_FAIL((expected), (actual));                                \
-		return 1;                                                              \
-	}                                                                          \
+    if (!(fabs((expected) - (actual)) < epsilon)) {                            \
+        MU_FL_EQUAL_FAIL((expected), (actual));                                \
+        return 1;                                                              \
+    }                                                                          \
 } while (0)
 
 #define assertEqualsString(expected, actual) do {                              \
-	if (strcmp((expected), (actual)) != 0) {                                   \
-		MU_STR_EQUAL_FAIL((expected), (actual));                               \
-		return 1;                                                              \
-	}                                                                          \
+    if (strcmp((expected), (actual)) != 0) {                                   \
+        MU_STR_EQUAL_FAIL((expected), (actual));                               \
+        return 1;                                                              \
+    }                                                                          \
 } while (0)
 
 #define test(test) do { int r = test(); mu_tests_run++; if (r) return r; } while (0)
