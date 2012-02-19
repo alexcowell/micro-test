@@ -1,8 +1,6 @@
 TODO
 ----
 
-- Allow creation of a test suite to handle multiple failures/errors so all tests
-  can be run in one go and all test results can be seen.
 - Add a TEST(testname) macro so it's obvious which functions are tests?
 - before()/after() hooks?
 - Add support for multiple test suites to be run at the same time.

@@ -1,8 +1,6 @@
 #include "micro_unit.h"
 #include <stdio.h>
 
-int mu_tests_run = 0;
-
 static char* test_truth_checks() {
     int foo = 7;
 
@@ -50,58 +48,18 @@ static char* test_another_dummy() {
     return 0;
 }
 
-static int all_tests() {
-
-    // TODO: Loopify and add into TestSuite feature.
-    //       Adding tests to the test suite will keep track of the number of
-    //       tests. Each test can only have up to 1 error message.
-    int num_tests = 4;
-    char* results[num_tests];
-    int hasFailed = 0;
-
-    int i;
-    for (i = 0; i < num_tests; i++) {
-        results[i] = 0;
-    }
-
-    if (test_new_truth_checks() != 0) {
-        results[0] = test_new_truth_checks();
-        hasFailed = 1;
-    }
-
-    if (test_another_dummy() != 0) {
-        results[1] = test_another_dummy();
-        hasFailed = 1;
-    }
-
-    if (test_truth_checks() != 0) {
-        results[2] = test_truth_checks();
-        hasFailed = 1;
-    }
-
-    if (test_equality() != 0) {
-        results[3] = test_equality();
-        hasFailed = 1;
-    }
-
-    for (i = 0; i < num_tests; i++) {
-        if (results[i] != 0) printf("%s", results[i]);
-    }
-
-    for (i = 0; i < num_tests; i++) {
-        if (results[i] != 0) free(results[i]);
-    }
-
-    return hasFailed;
-}
-
 int main(int argc, char** argv) {
-    int result = all_tests();
+    TestSuite* suite;
+    newTestSuite(suite);
 
-    if (result == 0) {
-        printf("PASSED\n");
-    }
-    //printf("\nTests run: %d\n", mu_tests_run);
+    addTest(suite, test_truth_checks);
+    addTest(suite, test_equality);
+    addTest(suite, test_new_truth_checks);
+    addTest(suite, test_another_dummy);
+
+    runTestSuite(suite);
+
+    destroyTestSuite(suite);
 
     return 0;
 }
