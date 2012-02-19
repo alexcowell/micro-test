@@ -10,16 +10,15 @@ static char* test_truth_checks() {
     assertFalse(foo == -7);
 
     assertTrue(1);
-    assertFalse(0);
+    assertFalse(1);
 
     return 0;
 }
 
-/*
-static int test_equality() {
+static char* test_equality() {
     int i = 5;
-    assertEqualsInt(5, i);
     assertEqualsInt(i, 5);
+    assertEqualsInt(5, i);
 
     char* s = "Hello!";
     assertEqualsString("Hello!", s);
@@ -29,36 +28,34 @@ static int test_equality() {
     assertEqualsDouble(3.145, f, 0.000001);
     assertEqualsDouble(f, 3.145, 0.000001);
 
-    double d = 3.14678364873;
+    double d = 3.12678364873;
     assertEqualsDouble(3.14678364873, d, 0.0000000000001);
     assertEqualsDouble(d, 3.14678364873, 0.0000000000001);
 
     return 0;
 }
-*/
 
 static char* test_new_truth_checks() {
     assertTrue(1);
-    assertFalse(0);
+    assertFalse(1);
 
     return 0;
 }
 
 static char* test_another_dummy() {
     int i = 3;
-    assertTrue(i == 3);
-    assertFalse(i == 2);
+    assertTrue(i == 2);
+    assertFalse(i == 4);
 
     return 0;
 }
 
 static int all_tests() {
-//    test(test_equality);
 
     // TODO: Loopify and add into TestSuite feature.
     //       Adding tests to the test suite will keep track of the number of
     //       tests. Each test can only have up to 1 error message.
-    int num_tests = 3;
+    int num_tests = 4;
     char* results[num_tests];
     int hasFailed = 0;
 
@@ -82,6 +79,11 @@ static int all_tests() {
         hasFailed = 1;
     }
 
+    if (test_equality() != 0) {
+        results[3] = test_equality();
+        hasFailed = 1;
+    }
+
     for (i = 0; i < num_tests; i++) {
         if (results[i] != 0) printf("%s", results[i]);
     }
@@ -101,5 +103,5 @@ int main(int argc, char** argv) {
     }
     //printf("\nTests run: %d\n", mu_tests_run);
 
-    return result != 0;
+    return 0;
 }
